@@ -59,3 +59,8 @@
     font-weight: bold;
     background-color: var(--color-danger);
 }
+@media all and (width < 700px){
+    .form{
+        width: 95%;
+    }
+}

@@ -30,11 +30,9 @@ if(login){
 }
 
 if(register){
-    function validateEmail(){
-        
-    }
     register.addEventListener('submit', (e)=>{
         e.preventDefault()
+        const pattern = /[^0-9]/
         const name = register['name'].value
         const email = register['email'].value
         const phone = register['phone'].value
@@ -45,6 +43,9 @@ if(register){
         }
         else if(email.length <= 0){
             createMessage("Please input your email!", register, 'danger')
+        }
+        else if(phone.match(pattern)){
+            createMessage("Phone number cannot contain alphabetical characters!", register, 'danger')
         }
         else if(phone.length < 10 || phone.length > 10){
             createMessage("Phone number must be 10 digits long!", register, 'danger')
