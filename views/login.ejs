@@ -1,0 +1,21 @@
+<% layout('layout/boilerPlate') %>
+
+<link rel="stylesheet" href="/css/reglog.css">
+<div class="fback">
+    <form action="/login" method="post" id="login" class="form">
+        <!-- <h1>Login...</h1> -->
+        <div class="form-field">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" name="username" id="username">
+        </div>
+        <div class="form-field">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password">
+        </div>
+        <button class="btn">Login</button>
+    </form>
+    <div class="user-check">
+        <p>Don't have an account? <a href="/register"> Click here</a> to register</p>
+    </div>
+</div>
+<script src="/js/reglog.js"></script>
