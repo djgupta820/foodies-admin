@@ -35,21 +35,28 @@
     width: 100%;
 }
 .btn{
+    width: 30%;
+    min-width: 150px;
     margin-top: 1rem;
     font-weight: bold;
     background-color: var(--nav-text);
+    align-self: center;
 }
 .btn:hover{
     background-color: #fff;
     color: var(--nav-color);
 }
 .user-check{
-    min-width: 50%;
+    min-width: 40%;
     width: fit-content;
     text-align: center;
     color: white;
-    padding-top: 0.5rem;
     background-color: var(--nav-color);
+    padding: 0.5rem;
+}
+.user-check a{
+    text-decoration: none;
+    color:antiquewhite;
 }
 .message-danger{
     width: 100%;
