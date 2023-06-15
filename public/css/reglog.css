@@ -34,6 +34,24 @@
 .form-field input{
     width: 100%;
 }
+.loc{
+    display: flex;
+}
+.loc > input[type="text"]{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+#loc{
+    font-size: 1.5rem;
+    padding: 0.2em 0.3em;
+    border: 0.03em solid var(--nav-text);
+    border-left: none;
+}
+#loc:hover{
+    transition: 200ms;
+    background-color: var(--nav-text);
+    color: var(--nav-color);
+}
 .btn{
     width: 30%;
     min-width: 150px;
