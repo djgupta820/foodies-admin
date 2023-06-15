@@ -1,9 +1,17 @@
 const express = require('express')
 const path = require('path')
 const ejsMate = require('ejs-mate')
+const mongoose = require('mongoose')
 const userRoutes = require('./routes/userRoots')
 const app = express()
 const port = 3000
+
+mongoose.connect('mongodb://127.0.0.1:27017/foodies')
+.then((msg)=>{
+    console.log('connected to foodies')
+}).catch((err)=>{
+    console.log(err)
+})
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
