@@ -61,7 +61,7 @@ if (register) {
         const name = register['name'].value
         const email = register['email'].value
         const phone = register['phone'].value
-        const address = register['address'].value
+        const address = register['address']
         const password = register['password'].value
         if (name.length <= 3) {
             createMessage("Name must have more than 3 characters!", register, 'danger')
@@ -75,8 +75,10 @@ if (register) {
         else if (phone.length < 10 || phone.length > 10) {
             createMessage("Phone number must be 10 digits long!", register, 'danger')
         }
-        else if (address.length <= 0) {
-            createMessage("Please input your address!", register, 'danger')
+        else if(address){
+            if (address.value.length <= 0) {
+                createMessage("Please input your address!", register, 'danger')
+            }
         }
         else if (password.length < 8 || password.length > 15) {
             createMessage("Password length must be between 8 and 15 characters!", register, 'danger')

@@ -1,0 +1,20 @@
+<% layout('layout/admin') %>
+<link rel="stylesheet" href="/css/reglog.css">
+<div class="fback" style="height: 100vh;">
+    <form action="/admin/login" method="post" id="login" class="form">
+        <h1>Admin Login</h1>
+        <div class="form-field">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="email" name="email" id="email">
+        </div>
+        <div class="form-field">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password">
+        </div>
+        <button class="btn">Login</button>
+    </form>
+    <div class="user-check">
+        <p>Don't have an account? <a href="/admin/register"> Click here</a> to register</p>
+    </div>
+</div>
+<script src="/js/reglog.js"></script>

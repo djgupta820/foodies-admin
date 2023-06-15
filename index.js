@@ -3,6 +3,7 @@ const path = require('path')
 const ejsMate = require('ejs-mate')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/userRoots')
+const adminRoutes = require('./routes/adminRoutes')
 const app = express()
 const port = 3000
 
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended: true}))
 
 app.use('/user', userRoutes)
+app.use('/admin', adminRoutes)
 
 app.get('/', (req, res)=>{
     res.render('index')
