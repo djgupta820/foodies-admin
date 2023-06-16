@@ -1,0 +1,29 @@
+<% layout('layout/admin') %>
+
+    <section class="container">
+        <div class="card mt-2" style="width: 22rem; box-shadow: 1px 1px 10px 1px gray;">
+            <img class="card-img-top" src="<%= item.image %>" alt="Item Image" style="max-height: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= item.name %>
+                </h5>
+                <p class="text-muted">
+                    <%= item.category %>
+                </p>
+                <p class="card-text">
+                    <%= item.description %>
+                </p>
+                
+                <div style="display: flex;">
+                    <a href="/admin/<%= item._id %>/edit" class="btn btn-warning mx-1 px-5"> Edit </a>
+                    <form action="/admin/<%= item._id %>/delete?_method=DELETE" method="post">
+                        <button class="btn btn-danger mx-1 px-5">Delete</button>
+                    </form>
+                </div>
+                <!-- <a href="" class="btn btn-danger mx-1 px-5"> Delete </a> -->
+            </div>
+        </div>
+        <div style="border: 1px solid lightgray;">
+            
+        </div>
+    </section>
