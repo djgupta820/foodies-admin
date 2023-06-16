@@ -20,7 +20,11 @@ const FoodSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review'
+    }]
 })
 
 const Food = new mongoose.model('Food', FoodSchema)
