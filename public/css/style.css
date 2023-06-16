@@ -1,0 +1,19 @@
+.card{
+    width: 13rem;
+}
+.items{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content:flex-start;
+}
+
+@media all and (width < 489px){
+    .items{
+        justify-content: space-around;
+    }
+    .items .card{
+        width: 80%;
+    }
+}

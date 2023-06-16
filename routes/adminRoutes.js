@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const Admin = require('../models/Admin')
+const Food = require('../models/Food')
 const router = express.Router()
 
 router.get('/', (req,res)=>{
@@ -20,13 +21,13 @@ router.post('/login', async (req,res)=>{
     const admin = await Admin.findOne({email})
     if(admin){
         console.log('admin found!')
-        res.redirect('/admin')
+        res.redirect('/admin/dashboard')
     }else{
         console.log('admin not found!')
         res.redirect('/admin')
     }
 })
-
+ 
 router.get('/register', (req,res)=>{
     res.render('admin/register')
 })
@@ -38,6 +39,15 @@ router.post('/register', async (req,res)=>{
     password = hash
     await Admin.create({name, email, phone, password})
     res.redirect('/admin/login')
+})
+
+router.get('/dashboard', async (req,res)=>{
+    const items = await Food.find({})
+    res.render('admin/dashboard', {items})
+})
+
+router.get('/new', (req,res)=>{
+    res.render('admin/new')
 })
 
 module.exports = router
