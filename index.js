@@ -17,10 +17,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/foodies')
     console.log(err)
 })
 
+// Session configuration
 const SessionConfig = {
     secret: 'secret-code',
     resave: false,
     saveUninitialized: true,
+    cookie: {maxAge: 1000*60*60*24}
 }
 
 app.engine('ejs', ejsMate)
@@ -34,11 +36,13 @@ app.use(methodOverride('_method'))
 app.use(session(SessionConfig))
 app.use(flash())
 
+// middleware for flashing messages
 app.use((req,res,next)=>{
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     next()
 })
+
 app.use('/user', userRoutes)
 app.use('/admin', adminRoutes)
 
