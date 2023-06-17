@@ -3,6 +3,8 @@ const path = require('path')
 const ejsMate = require('ejs-mate')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const session = require('express-session')
+const flash = require('connect-flash')
 const userRoutes = require('./routes/userRoots')
 const adminRoutes = require('./routes/adminRoutes')
 const app = express()
@@ -15,6 +17,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/foodies')
     console.log(err)
 })
 
+const SessionConfig = {
+    secret: 'secret-code',
+    resave: false,
+    saveUninitialized: true,
+}
+
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
@@ -23,7 +31,14 @@ app.use(express.static(path.join(__dirname, 'public/uploads')))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(methodOverride('_method'))
+app.use(session(SessionConfig))
+app.use(flash())
 
+app.use((req,res,next)=>{
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error')
+    next()
+})
 app.use('/user', userRoutes)
 app.use('/admin', adminRoutes)
 

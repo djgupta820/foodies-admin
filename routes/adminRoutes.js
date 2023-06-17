@@ -17,16 +17,19 @@ router.get('/login', (req,res)=>{
 
 router.post('/login', async (req,res)=>{
     let {email, password} = req.body
-    const salt = await bcrypt.genSalt(13)
-    const hash = await bcrypt.hash(password, salt)
-    password = hash
     const admin = await Admin.findOne({email})
-    if(admin){
-        console.log('admin found!')
-        res.redirect('/admin/dashboard')
+    if(!admin){
+        req.flash('error', 'user does not exist!')
+        res.redirect('/admin/login')
     }else{
-        console.log('admin not found!')
-        res.redirect('/admin')
+        const validUser = bcrypt.compare(password, admin.password)
+        if(!validUser){
+            req.flash('error', 'password did not match')
+            res.redirect('/admin/login')
+        }
+        else{
+            res.redirect('/admin/dashboard')
+        }
     }
 })
  
@@ -67,6 +70,7 @@ router.post('/new', upload.single('image'), async (req,res)=>{
     const {name, category, price, description} = req.body
     const image = '/uploads/' + req.file.filename
     await Food.create({name, category, price, image, description})
+    req.flash('success', 'Item added Successfully')
     res.redirect('/admin/dashboard')
 })
 
@@ -86,12 +90,14 @@ router.patch('/:itemId/edit', async (req,res)=>{
     const {itemId} = req.params
     let {name, category, price, image, description} = req.body
     await Food.findByIdAndUpdate(itemId, {name, category, price, image, description})
+    req.flash('success', `${name} updated successfully`)
     res.redirect(`/admin/${itemId}/view`)
 })
 
 router.delete('/:itemId/delete', async (req, res)=>{
     const {itemId} = req.params
     await Food.findByIdAndDelete(itemId)
+    req.flash('success', 'item deleted successdully')
     res.redirect('/admin/dashboard')
 })
 
