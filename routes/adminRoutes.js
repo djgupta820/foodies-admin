@@ -99,7 +99,7 @@ router.post('/new', [adminCheck, upload.single('image')], async (req,res)=>{
 // rendering view item
 router.get('/:itemId/view', adminCheck, async (req,res)=>{
     const {itemId} = req.params
-    const item = await Food.findById(itemId)
+    const item = await Food.findById(itemId).populate('reviews')
     res.render('admin/view', {item})
 })
 
