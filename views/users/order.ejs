@@ -1,0 +1,34 @@
+<% layout('layout/boilerPlate') %>
+<section class="container">
+    <div class="view">
+        <div class="card mt-2" style="width: 22rem; box-shadow: 1px 1px 10px 1px gray;">
+            <img class="card-img-top" src="<%= item.image %>" alt="Item Image" style="max-height: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title"> <%= item.name %> </h5>
+                <p class="text-muted"> <%= item.category %> </p>
+                <h6 style="color: red;"> &#8377; <span id="iPrice"><%= item.price %></span></h6>
+                <p class="card-text"> <%= item.description %> </p>
+            </div>
+        </div>
+        <div class="reviews mx-5 p-1 my-2">
+            <h5>Order Details</h5>
+            <form action="/user/<%= item._id %>/order" method="post" style="width: 95%;" id="order">
+                <div class="mb-3">
+                    <label for="quantity" class="form-label text-muted">Quantity</label>
+                    <input type="text" name="quantity" id="quantity" class="form-control" value="1">
+                </div>
+                <div class="mb-3">
+                    <label for="total" class="form-label text-muted">Total</label>
+                    <input type="text" name="total" id="total" class="form-control" value="<%= item.price %>">
+                </div>
+                <div class="mb-3">
+                    <label for="rating" class="form-label text-muted">Delivered To</label>
+                    <textarea class="form-control" name="comment" id="commment" rows="3" style="resize: none;" disabled> Some Address</textarea>
+                </div>
+                <button type="submit" class="btn btn-sm btn-success">Place Order</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script src="/js/order.js"></script>

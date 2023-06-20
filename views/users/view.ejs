@@ -6,6 +6,7 @@
             <div class="card-body">
                 <h5 class="card-title"> <%= item.name %> </h5>
                 <p class="text-muted"> <%= item.category %> </p>
+                <h6 style="color: red;"> &#8377; <%= item.price %></h6>
                 <p class="card-text"> <%= item.description %> </p>
                 <div style="display: flex; align-items: center; justify-content: space-around;">
                     <a href="/user/<%= item._id %>/order" class="btn btn-warning mx-1 px-4"> order </a>

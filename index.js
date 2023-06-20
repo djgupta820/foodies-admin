@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
+// const MongoStore = require('connect-mongo')(session)
 const userRoutes = require('./routes/userRoots')
 const adminRoutes = require('./routes/adminRoutes')
 const app = express()
@@ -19,10 +20,15 @@ mongoose.connect('mongodb://127.0.0.1:27017/foodies')
 
 // Session configuration
 const SessionConfig = {
-    secret: 'secret-code',
+    secret: 'secretcode',
     resave: false,
     saveUninitialized: true,
-    cookie: {maxAge: 1000*60*60*24}
+    cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},     // for one month
+    // store: new MongoStore({
+    //     url: 'mongodb://127.0.0.1:27017/foodies',
+    //     ttl: 1000 * 60 * 60 * 24,
+    //     autoRemove: 'native'
+    // })
 }
 
 app.engine('ejs', ejsMate)
