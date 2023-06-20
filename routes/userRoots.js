@@ -53,7 +53,7 @@ router.post('/register', async (req,res)=>{
 
 router.get('/dashboard', async (req,res)=>{
     const items = await Food.find({})
-    console.log(req.session)
+    // console.log(req.session)
     res.render('users/dashboard', {items})
 })
 
